@@ -49,7 +49,24 @@ public class AdminLogin extends HttpServlet {
 			case "/dashboard":
 				dashboard(request, response);
 				break;
-				
+			case "/artiste":
+				artiste(request, response);
+				break;
+			case "/tableau":
+				tableau(request, response);
+				break;
+			case "/exposition":
+				exposition(request, response);
+				break;
+			case "/transaction":
+				transaction(request, response);
+					break;
+			case "/ajouterArtiste":
+				ajouterArtiste(request, response);
+					break;
+			case "/ajouterTableau":
+				ajouterTableau(request, response);
+					break;
 		default:
 			listUserIndex(request, response);
 			break;
@@ -109,6 +126,54 @@ public class AdminLogin extends HttpServlet {
 		
 	}
 
+	private void artiste(HttpServletRequest request, HttpServletResponse response)
+			throws SQLException, IOException, ServletException {
+		
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Vue/artiste.jsp");
+			dispatcher.forward(request, response);
+		
+		
+	}
 	
+	private void tableau(HttpServletRequest request, HttpServletResponse response)
+			throws SQLException, IOException, ServletException {
+		
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Vue/tableau.jsp");
+			dispatcher.forward(request, response);
+		
+		
+	}
+	private void exposition(HttpServletRequest request, HttpServletResponse response)
+			throws SQLException, IOException, ServletException {
+		
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Vue/exposition.jsp");
+			dispatcher.forward(request, response);
+		
+		
+	}
+	private void transaction(HttpServletRequest request, HttpServletResponse response)
+			throws SQLException, IOException, ServletException {
+		
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Vue/transaction.jsp");
+			dispatcher.forward(request, response);
+		
+		
+	}
+	private void ajouterArtiste(HttpServletRequest request, HttpServletResponse response)
+			throws SQLException, IOException, ServletException {
+		
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Vue/ajouterArtiste.jsp");
+			dispatcher.forward(request, response);
+		
+		
+	}
 
+	private void ajouterTableau(HttpServletRequest request, HttpServletResponse response)
+			throws SQLException, IOException, ServletException {
+		
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Vue/ajouterTableau.jsp");
+			dispatcher.forward(request, response);
+		
+		
+	}
 }

@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 
 
 
@@ -264,28 +265,36 @@
                         class="nav_name">Login</span> </a>
             </nav>
         </div>
+      
+        
         <!--Container Main start-->
         <div class="" style="position:relative; top: 10%;">
         <table class="table">
             <thead>
               <tr>
-                <th scope="col">ID</th>
-                <th scope="col">ID OEUVRE</th>
-                <th scope="col">ID EXPOSITION</th>
-                <th scope="col">Nom Client</th>
-                <th scope="col">Date de Vente</th>
-                <th scope="col">Status</th>
+                <th scope="col">ID Artiste</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Nationalité</th>
+                <th scope="col">Date De Naissance</th>
+                
                 
               </tr>
             </thead>
+                   <a href="<%=request.getContextPath()%>/ajouterArtiste"> <i class='bx bx-plus'
+                style='color: #007bff; font-size: 40px;' title="Ajouter un Etudiant"></i></a>
+
+</a>
+ 					
+</button>
+            
             <tbody>
                 <c:forEach var="user" items="${Artiste}">
-             
+                  
                              <tr>
-                                 <td><c:out value="${artiste.idAr}" /></td>
-                                 <td><c:out value="${artiste.nom}" /></td>
-                                 <td><c:out value="${artiste.narionalite}" /></td>
-                                 <td><c:out value="${artiste.dateNaissance}" /></td>
+                                 <td><c:out value="${user.idAr}" /></td>
+                                 <td><c:out value="${user.nom}" /></td>
+                                 <td><c:out value="${user.narionalite}" /></td>
+                                 <td><c:out value="${user.dateNaissance}" /></td>
                            
                                  
                              </tr>

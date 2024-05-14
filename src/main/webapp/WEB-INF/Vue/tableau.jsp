@@ -269,27 +269,22 @@
         <table class="table">
             <thead>
               <tr>
-                <th scope="col">ID</th>
-                <th scope="col">ID OEUVRE</th>
-                <th scope="col">ID EXPOSITION</th>
-                <th scope="col">Nom Client</th>
-                <th scope="col">Date de Vente</th>
-                <th scope="col">Status</th>
+                <th scope="col">ID Tableau</th>
+                <th scope="col">ID Artiste</th>
+                <th scope="col">Titre</th>
+                <th scope="col">Date de Creation</th>
+                <th scope="col">Description</th>
+                <th scope="col">Prix</th>
+                <th scope="col">Image</th>
+                
                 
               </tr>
             </thead>
+               <a href="<%=request.getContextPath()%>/ajouterTableau"> <i class='bx bx-plus'
+                style='color: #007bff; font-size: 40px;' title="Ajouter un Etudiant"></i></a>
+
             <tbody>
-                <c:forEach var="user" items="${Artiste}">
-             
-                             <tr>
-                                 <td><c:out value="${artiste.idAr}" /></td>
-                                 <td><c:out value="${artiste.nom}" /></td>
-                                 <td><c:out value="${artiste.narionalite}" /></td>
-                                 <td><c:out value="${artiste.dateNaissance}" /></td>
-                           
-                                 
-                             </tr>
-                         </c:forEach>
+              
                  
                </tbody>
           </table>         

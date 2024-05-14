@@ -2,6 +2,17 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+
+<%
+String login = "";
+if (session.getAttribute("username") != null) {
+	login = session.getAttribute("username").toString();
+} else {
+	response.sendRedirect("Login.jsp");
+
+}
+%>
+
 <html>
 
 <head>
@@ -214,31 +225,37 @@
 
     <body id="body-pd">
         <header class="header" id="header">
-            <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
+            <div class="header_toggle">
+                <i class='bx bx-menu' id="header-toggle"></i>
+            </div>
             <!-- <div class=" bg-gray-200" style="height:100% ;"> -->
-      
-                <div class="container h-screen flex justify-center items-center px-4 sm:px-6 lg:px-8" style="height:100% ;position:relative;left: 35%;margin-top:1%;">
-         	<form action="chercherindexdepartement" method="post" class="search-wrap">
 
-         
-                 <div class="relative">
+            <div class="container h-screen flex justify-center items-center px-4 sm:px-6 lg:px-8"
+                style="height: 100%; position: relative; left: 35%; margin-top: 1%;">
+                <form action="chercheretudiant" method="post" class="search-wrap">
 
-         
-                   <input name="nameUser" type="text" class="h-14 w-96 pr-8 pl-5 rounded z-0 focus:shadow focus:outline-none" placeholder="Search anything...">
-         
-                   <div class="absolute top-4 right-3">
-                   <button class="search-button" type="submit">									
-                     <i class="fa fa-search text-gray-400 z-20 hover:text-gray-500"></i>
-                     </button>
-                   </div>
-                   
-                 </div>
-                                </form>
-         
-                
+
+                    <div class="relative">
+
+
+                        <input name="nameUser3" type="text" 
+                            class="h-14 w-96 pr-8 pl-5 rounded z-0 focus:shadow focus:outline-none"
+                            placeholder="Search anything...">
+
+                        <div class="absolute top-4 right-3">
+                            <button class="search-button" type="submit">
+                                <i class="fa fa-search text-gray-400 z-20 hover:text-gray-500"></i>
+                            </button>
+                        </div>
+
+                    </div>
+                </form>
+
+
                 <!-- </div> -->
-             </div>        </header>
-        <div class="l-navbar" id="nav-bar">
+            </div>
+        </header>
+         <div class="l-navbar" id="nav-bar">
             <nav class="nav">
                 <div> <a href="<%=request.getContextPath()%>/dashboard" class="nav_logo"> <i class='bx bx-layer nav_logo-icon'></i> 
                 <spanclass="nav_logo-name">Galerie d'Art</span> </a>
@@ -264,39 +281,79 @@
                         class="nav_name">Login</span> </a>
             </nav>
         </div>
+      
         <!--Container Main start-->
-        <div class="" style="position:relative; top: 10%;">
-        <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">ID</th>
-                <th scope="col">ID OEUVRE</th>
-                <th scope="col">ID EXPOSITION</th>
-                <th scope="col">Nom Client</th>
-                <th scope="col">Date de Vente</th>
-                <th scope="col">Status</th>
+        <a href="<%=request.getContextPath()%>/newetudiant"> <i class='bx bx-plus'
+                style='color: #007bff; font-size: 40px;' title="Ajouter un Artist"></i></a>
+
+
+                <center><c:if test="${user != null}">
+                    <form action="updateetudiant" method="post" class="start">
+                </c:if>
+                <c:if test="${user == null}">
+                    <form action="insertetudiant" method="post" class="start">
+                </c:if>
                 
-              </tr>
-            </thead>
-            <tbody>
-                <c:forEach var="user" items="${Artiste}">
-             
-                             <tr>
-                                 <td><c:out value="${artiste.idAr}" /></td>
-                                 <td><c:out value="${artiste.nom}" /></td>
-                                 <td><c:out value="${artiste.narionalite}" /></td>
-                                 <td><c:out value="${artiste.dateNaissance}" /></td>
-                           
-                                 
-                             </tr>
-                         </c:forEach>
+                <caption>
+                    <h2>
+                        <c:if test="${user != null}">
+                Modifier l'etudiant <c:out value="${user.nom}" /> :	
+                <br>
+                 </c:if>
+                        <c:if test="${user == null}">
+                       Ajouter un artiste :
+                       
+                       <br>
+                    </c:if>
+                    </h2>
+                </caption>
+                
+                <c:if test="${user != null}">
+                    <input type="hidden" name="id" value="<c:out value='${user.id}' />" />
+                </c:if>
+                
+                
+               
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" name="idArtiste"  value="<c:out value='${user.nom}' />" id="floatingInput" placeholder="IDArtiste">
+                    <label for="floatingInput">ID Artiste</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input type="text" class="form-control" name="titre"  value="<c:out value='${user.nationalite}' />" id="floatingInput" placeholder="titre">
+                    <label for="floatingInput">Titre:</label>
+                  </div>
+                  
+                    
                  
-               </tbody>
-          </table>         
-        
-</div>
+                
+                
+                
+                <div class="col-12">
+                <c:if test="${user != null}">
+                <button class="btn btn-primary" type="submit">Modifier</button>
+                </c:if>
+                
+                <c:if test="${user == null}">
+                <button class="btn btn-primary" type="submit">Ajouter</button>
+                </c:if>
+                <c:if test="${user == null}">
+				<a href="<%=request.getContextPath()%>/tableau"> <i class='btn btn-danger'
+                style='color: #00000; font-size: 15px;' title="Ajouter un Etudiant">Annuler</i></a>
+                
+                </c:if>
+                </div>
+                </form>
+                </center>
+                
+                 
+                   
+                     
+                    </form>
+        </div>
         <!--Container Main end-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
+        </script>
         <script>
             document.addEventListener("DOMContentLoaded", function (event) {
 

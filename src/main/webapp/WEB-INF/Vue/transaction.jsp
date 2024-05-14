@@ -269,18 +269,22 @@
         <table class="table">
             <thead>
               <tr>
-                <th scope="col">ID</th>
-                <th scope="col">ID OEUVRE</th>
-                <th scope="col">ID EXPOSITION</th>
+                <th scope="col">ID Transaction</th>
+                <th scope="col">ID Tableau</th>
+                <th scope="col">ID Expostion</th>
                 <th scope="col">Nom Client</th>
                 <th scope="col">Date de Vente</th>
-                <th scope="col">Status</th>
+                <th scope="col">Statut</th>
+              
+                
                 
               </tr>
             </thead>
+            <button type="button" class="btn">
+ 					<i class="fas fa-plus"></i>
             <tbody>
                 <c:forEach var="user" items="${Artiste}">
-             
+                  
                              <tr>
                                  <td><c:out value="${artiste.idAr}" /></td>
                                  <td><c:out value="${artiste.nom}" /></td>
