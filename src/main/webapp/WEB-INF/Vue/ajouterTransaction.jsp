@@ -315,32 +315,28 @@ if (session.getAttribute("username") != null) {
                 
                
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control" name="idArtiste"  value="<c:out value='${user.nom}' />" id="floatingInput" placeholder="IDArtiste">
-                    <label for="floatingInput">ID Artiste</label>
+                    <input type="number" class="form-control" name="idtableau"  value="<c:out value='${user.nom}' />" id="floatingInput" placeholder="ID Tableau">
+                    <label for="floatingInput">ID Tableau</label>
+                  </div>
+                   <div class="form-floating mb-3">
+                    <input type="number" class="form-control" name="idexposition"  value="<c:out value='${user.nom}' />" id="floatingInput" placeholder="ID Exposition">
+                    <label for="floatingInput">ID Exposition</label>
+                  </div>
+                   <div class="form-floating mb-3">
+                    <input type="text" class="form-control" name="nomclient"  value="<c:out value='${user.nom}' />" id="floatingInput" placeholder="Nom Client">
+                    <label for="floatingInput">Nom Client</label>
                   </div>
                   <div class="form-floating mb-3">
-                    <input type="text" class="form-control" name="titre"  value="<c:out value='${user.nationalite}' />" id="floatingInput" placeholder="titre">
-                    <label for="floatingInput">Titre</label>
-                  </div>
-                  <div class="form-floating mb-3">
-				    <input type="date" readonly class="form-control" name="annee" value="<c:out value='${user.nationalite}' />" id="floatingInput" placeholder="Date de Creation">
-				    <label for="floatingInput">Date de Creation</label>
+				    <input type="date" readonly class="form-control" name="datedebut" value="<c:out value='${user.nationalite}' />" id="floatingInput" placeholder="Date de vente">
+				    <label for="floatingInput">Date de Vente</label>
 				    <i class="bi bi-calendar"></i>
 				</div>
+				   
                   <div class="form-floating mb-3">
-                    <input type="text" class="form-control" name="description"  value="<c:out value='${user.nationalite}' />" id="floatingInput" placeholder="Description">
-                    <label for="floatingInput">Description</label>
+                    <input type="text" class="form-control" name="statut"  value="<c:out value='${user.nationalite}' />" id="floatingInput" placeholder="Statut">
+                    <label for="floatingInput">Statut</label>
                   </div>
-                    
-                 <div class="form-floating mb-3">
-                    <input type="number" class="form-control" name="prix"  value="<c:out value='${user.nationalite}' />" id="floatingInput" placeholder="Prix">
-                    <label for="floatingInput">Prix</label>
-                  </div>
-                
-               <div class="form-floating mb-3">
-                <input type="file" class="form-control" name="image"  value="<c:out value='${user.nationalite}' />" id="imageUpload" placeholder="image">
-                <label for="imageUpload">Upload Image</label>
-        
+            
     </div>
 				                
                 <div class="col-12">
@@ -352,7 +348,7 @@ if (session.getAttribute("username") != null) {
                 <button class="btn btn-primary" type="submit">Ajouter</button>
                 </c:if>
                 <c:if test="${user == null}">
-				<a href="<%=request.getContextPath()%>/tableau"> <i class='btn btn-danger'
+				<a href="<%=request.getContextPath()%>/transaction"> <i class='btn btn-danger'
                 style='color: #00000; font-size: 15px;' title="Ajouter un Etudiant">Annuler</i></a>
                 
                 </c:if>

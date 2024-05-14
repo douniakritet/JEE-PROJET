@@ -325,7 +325,7 @@ if (session.getAttribute("username") != null) {
                   
                     
                  <div class="form-floating mb-3">
-				    <input type="date" readonly class="form-control" name="iddepar" value="<c:out value='${user.dateNaissance}' />" id="floatingInput" placeholder="Date de Naissance">
+				    <input type="date" readonly class="form-control" name="date" value="<c:out value='${user.dateNaissance}' />" id="floatingInput" placeholder="Date de Naissance">
 				    <label for="floatingInput">Date de Naissance</label>
 				    <i class="bi bi-calendar"></i>
 				</div>

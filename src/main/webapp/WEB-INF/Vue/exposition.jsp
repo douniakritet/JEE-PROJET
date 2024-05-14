@@ -278,8 +278,9 @@
                 
               </tr>
             </thead>
-            <button type="button" class="btn">
- 					<i class="fas fa-plus"></i> 
+            <a href="<%=request.getContextPath()%>/ajouterExposition"> <i class='bx bx-plus'
+                style='color: #007bff; font-size: 40px;' title="Ajouter un Etudiant"></i></a>
+
             <tbody>
                 <c:forEach var="user" items="${Artiste}">
                   

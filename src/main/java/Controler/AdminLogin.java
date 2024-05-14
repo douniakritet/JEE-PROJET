@@ -67,6 +67,12 @@ public class AdminLogin extends HttpServlet {
 			case "/ajouterTableau":
 				ajouterTableau(request, response);
 					break;
+			case "/ajouterExposition":
+				ajouterExposition(request, response);
+						break;
+	       case "/ajouterTransaction":
+	    	   ajouterTransaction(request, response);
+				break;
 		default:
 			listUserIndex(request, response);
 			break;
@@ -172,6 +178,22 @@ public class AdminLogin extends HttpServlet {
 			throws SQLException, IOException, ServletException {
 		
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Vue/ajouterTableau.jsp");
+			dispatcher.forward(request, response);
+		
+		
+	}
+	private void ajouterExposition(HttpServletRequest request, HttpServletResponse response)
+			throws SQLException, IOException, ServletException {
+		
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Vue/ajouterExposition.jsp");
+			dispatcher.forward(request, response);
+		
+		
+	}
+	private void ajouterTransaction(HttpServletRequest request, HttpServletResponse response)
+			throws SQLException, IOException, ServletException {
+		
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Vue/ajouterTransaction.jsp");
 			dispatcher.forward(request, response);
 		
 		
