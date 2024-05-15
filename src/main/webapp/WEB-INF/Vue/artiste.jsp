@@ -276,6 +276,7 @@
                 <th scope="col">Nom</th>
                 <th scope="col">Nationalité</th>
                 <th scope="col">Date De Naissance</th>
+                <th scope="col">Action</th>
                 
                 
               </tr>
@@ -288,17 +289,23 @@
 </button>
             
             <tbody>
-                <c:forEach var="user" items="${Artiste}">
-                  
-                             <tr>
-                                 <td><c:out value="${user.idAr}" /></td>
-                                 <td><c:out value="${user.nom}" /></td>
-                                 <td><c:out value="${user.narionalite}" /></td>
-                                 <td><c:out value="${user.dateNaissance}" /></td>
-                           
-                                 
-                             </tr>
-                         </c:forEach>
+                <c:forEach var="artiste" items="${Artiste}">
+                <tr>
+                    <td>${artiste.id}</td>
+                    <td>${artiste.nom}</td>
+                    <td>${artiste.nationalite}</td>
+                    <td>${artiste.dateNaissance}</td>
+                    <td>
+                        <a href="${pageContext.request.contextPath}/updateExposition?id=${artiste.id}">
+                            <i class="fas fa-edit"></i> Update
+                        </a>
+                        <a href="${pageContext.request.contextPath}/deleteExposition?id=${artiste.id}" 
+                           onclick="return confirm('Are you sure you want to delete this item?');">
+                            <i class="fas fa-trash-alt"></i> Delete
+                        </a>
+                        </td>
+                </tr>
+            </c:forEach>
                  
                </tbody>
           </table>         

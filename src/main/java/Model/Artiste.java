@@ -11,6 +11,8 @@ public class Artiste {
 	private String nationalite;
 	private Date dateNaissance;
 	
+   
+	
 	public Artiste(int idAr,String nom, String nationalite, java.util.Date dateNaissance2) {
 		super();
 		this.id = idAr;

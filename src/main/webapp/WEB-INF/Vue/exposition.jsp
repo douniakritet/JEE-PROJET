@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <html>
 
@@ -270,9 +271,11 @@
             <thead>
               <tr>
                 <th scope="col">ID Expostion</th>
+                <th scope="col">Nom</th>
                 <th scope="col">Dtae Debut</th>
                 <th scope="col">Date Fin</th>
                 <th scope="col">Lieu</th>
+                <th scope="col">Action</th>
               
                 
                 
@@ -281,21 +284,26 @@
             <a href="<%=request.getContextPath()%>/ajouterExposition"> <i class='bx bx-plus'
                 style='color: #007bff; font-size: 40px;' title="Ajouter un Etudiant"></i></a>
 
-            <tbody>
-                <c:forEach var="user" items="${Artiste}">
-                  
-                             <tr>
-                                 <td><c:out value="${artiste.idAr}" /></td>
-                                 <td><c:out value="${artiste.nom}" /></td>
-                                 <td><c:out value="${artiste.narionalite}" /></td>
-                                 <td><c:out value="${artiste.dateNaissance}" /></td>
-                           
-                                 
-                             </tr>
-                         </c:forEach>
-                 
-               </tbody>
-          </table>         
+           <tbody>
+    <c:forEach var="exposition" items="${Exposition}">
+        <tr>
+            <td>${exposition.idE}</td>
+            <td>${exposition.nom}</td>
+            <td>${exposition.dateDebut}</td>
+            <td>${exposition.dateFin}</td>
+            <td>${exposition.lieu}</td>
+            <td>
+                        <a href="${pageContext.request.contextPath}/updateExposition?id=${exposition.idE}">
+                            <i class="fas fa-edit"></i> Update
+                        </a>
+                        <a href="${pageContext.request.contextPath}/deleteExposition?id=${exposition.idE}" 
+                           onclick="return confirm('Are you sure you want to delete this item?');">
+                            <i class="fas fa-trash-alt"></i> Delete
+                        </a>
+                        </td>
+        </tr>
+    </c:forEach>
+</tbody>
         
 </div>
         <!--Container Main end-->

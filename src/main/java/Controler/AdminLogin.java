@@ -1,6 +1,7 @@
 package Controler;
 
 import java.io.IOException;
+
 import java.sql.SQLException;
 import java.util.List;
 
@@ -12,18 +13,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
+import Model.Artiste;
+import Model.Exposition;
+import DAO.Jeebdd;
 import DAO.LoginBean;
 import Model.Login;
+import Model.Tableau;
+import Model.Transaction;
 
 @WebServlet("/")
 public class AdminLogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	/*private Jeebdd dao;
+	private Jeebdd dao;
 
 	public void init() {
 		dao = new Jeebdd();
-	}*/
+	}
 	
     public AdminLogin() {
         super();
@@ -50,16 +55,16 @@ public class AdminLogin extends HttpServlet {
 				dashboard(request, response);
 				break;
 			case "/artiste":
-				artiste(request, response);
+				listArtiste(request, response);
 				break;
 			case "/tableau":
-				tableau(request, response);
+				listTableau(request, response);
 				break;
 			case "/exposition":
-				exposition(request, response);
+				listExposition(request, response);
 				break;
 			case "/transaction":
-				transaction(request, response);
+				listTransaction(request, response);
 					break;
 			case "/ajouterArtiste":
 				ajouterArtiste(request, response);
@@ -82,6 +87,7 @@ public class AdminLogin extends HttpServlet {
 
 	}
 	}
+	
 	private void loginUser(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
 
 		LoginBean loginDao = new LoginBean();
@@ -132,7 +138,7 @@ public class AdminLogin extends HttpServlet {
 		
 	}
 
-	private void artiste(HttpServletRequest request, HttpServletResponse response)
+	/*private void artiste(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException, ServletException {
 		
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Vue/artiste.jsp");
@@ -164,7 +170,7 @@ public class AdminLogin extends HttpServlet {
 			dispatcher.forward(request, response);
 		
 		
-	}
+	}*/
 	private void ajouterArtiste(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException, ServletException {
 		
@@ -198,4 +204,35 @@ public class AdminLogin extends HttpServlet {
 		
 		
 	}
+	
+	private void listArtiste(HttpServletRequest request, HttpServletResponse response)
+			throws SQLException, IOException, ServletException {
+		List<Artiste> artiste = dao.selectAll();
+		request.setAttribute("Artiste", artiste);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Vue/artiste.jsp");
+		dispatcher.forward(request, response);
+	}
+	private void listTableau(HttpServletRequest request, HttpServletResponse response)
+			throws SQLException, IOException, ServletException {
+		List<Tableau> tableau = dao.selectAllT();
+		request.setAttribute("Tableau", tableau);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Vue/tableau.jsp");
+		dispatcher.forward(request, response);
+	}
+	private void listExposition(HttpServletRequest request, HttpServletResponse response)
+	        throws SQLException, IOException, ServletException {
+	    List<Exposition> exposition = dao.selectAllE();
+	    request.setAttribute("Exposition", exposition);
+	    RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Vue/exposition.jsp");
+	    dispatcher.forward(request, response);
+	}
+
+	private void listTransaction(HttpServletRequest request, HttpServletResponse response)
+			throws SQLException, IOException, ServletException {
+		List<Transaction> transaction = dao.selectAllTr();
+		request.setAttribute("Transaction", transaction);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Vue/transaction.jsp");
+		dispatcher.forward(request, response);
+	}
+
 }

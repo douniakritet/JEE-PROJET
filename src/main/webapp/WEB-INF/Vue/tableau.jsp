@@ -276,6 +276,7 @@
                 <th scope="col">Description</th>
                 <th scope="col">Prix</th>
                 <th scope="col">Image</th>
+                <th scope="col">Action</th>
                 
                 
               </tr>
@@ -285,7 +286,26 @@
 
             <tbody>
               
-                 
+                  <c:forEach var="tableau" items="${Tableau}">
+                <tr>
+                    <td>${tableau.idO}</td>
+                    <td>${tableau.idArtiste}</td>
+                    <td>${tableau.titre}</td>
+                    <td>${tableau.anneeCreation}</td>
+                    <td>${tableau.description}</td>
+                    <td>${tableau.prix}</td>
+                    <td>img src="${pageContext.request.contextPath}/images/${tableau.image}" alt="${tableau.titre}" /></td>
+                   <td>
+                        <a href="${pageContext.request.contextPath}/updateExposition?id=${exposition.idE}">
+                            <i class="fas fa-edit"></i> Update
+                        </a>
+                        <a href="${pageContext.request.contextPath}/deleteExposition?id=${exposition.idE}" 
+                           onclick="return confirm('Are you sure you want to delete this item?');">
+                            <i class="fas fa-trash-alt"></i> Delete
+                        </a>
+                        </td>
+                </tr>
+            </c:forEach>
                </tbody>
           </table>         
         

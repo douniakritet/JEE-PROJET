@@ -275,6 +275,7 @@
                 <th scope="col">Nom Client</th>
                 <th scope="col">Date de Vente</th>
                 <th scope="col">Statut</th>
+                <th scope="col">Action</th>
               
                 
                 
@@ -284,15 +285,25 @@
                 style='color: #007bff; font-size: 40px;' title="Ajouter un Etudiant"></i></a>
 
             <tbody>
-                <c:forEach var="user" items="${Artiste}">
+                <c:forEach var="transaction" items="${Transaction}">
                   
                              <tr>
-                                 <td><c:out value="${artiste.idAr}" /></td>
-                                 <td><c:out value="${artiste.nom}" /></td>
-                                 <td><c:out value="${artiste.narionalite}" /></td>
-                                 <td><c:out value="${artiste.dateNaissance}" /></td>
+                                 <td><c:out value="${transaction.idT}" /></td>
+                                 <td><c:out value="${transaction.idOeuvre}" /></td>
+                                 <td><c:out value="${transaction.idExposition}" /></td>
+                                 <td><c:out value="${transaction.nomClient}" /></td>
+                                 <td><c:out value="${transaction.dateVente}" /></td>
+                                 <td><c:out value="${transaction.statut}" /></td>
                            
-                                 
+                                 <td>
+                        <a href="${pageContext.request.contextPath}/updateExposition?id=${transaction.idT}">
+                            <i class="fas fa-edit"></i> Update
+                        </a>
+                        <a href="${pageContext.request.contextPath}/deleteExposition?id=${transaction.idT}" 
+                           onclick="return confirm('Are you sure you want to delete this item?');">
+                            <i class="fas fa-trash-alt"></i> Delete
+                        </a>
+                        </td>
                              </tr>
                          </c:forEach>
                  
