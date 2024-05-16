@@ -6,12 +6,14 @@ import Model.Exposition;
 import Model.Tableau;
 import Model.Transaction;
 
+import java.io.InputStream;
 import java.sql.Connection;
 
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -416,5 +418,85 @@ public class Jeebdd {
 	        printSQLException(e);
 	    }
 	}
+	/*public void insertTableau(Tableau tableau) throws SQLException {
+        try (Connection connection = getConnection(dbDriver);
+             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO oeuvre (idArtiste, titre, aneeCreation, description, prix, image) VALUES (?, ?, ?, ?, ?, ?)")) {
+            preparedStatement.setInt(1, tableau.getIdArtiste());
+            preparedStatement.setString(2, tableau.getTitre());
+            preparedStatement.setDate(3, (java.sql.Date) tableau.getAneeCreation());
+            preparedStatement.setString(4, tableau.getDescription());
+            preparedStatement.setDouble(5, tableau.getPrix());
+            preparedStatement.setString(6, tableau.getImage());
 
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+           printSQLException(e);
+        }
+    }*/
+	//
+	public void insertTableau(Tableau tableau, InputStream imageContent) throws SQLException {
+	    Connection connection = null;
+	    PreparedStatement preparedStatement = null;
+
+	    try {
+	        connection = getConnection(dbDriver); // Méthode pour obtenir la connexion à la base de données
+
+	        String query = "INSERT INTO oeuvre (idArtiste, titre, aneeCreation, description, prix, image) VALUES (?, ?, ?, ?, ?, ?)";
+	        preparedStatement = connection.prepareStatement(query);
+	        preparedStatement.setInt(1, tableau.getIdArtiste());
+	        preparedStatement.setString(2, tableau.getTitre());
+	        preparedStatement.setDate(3, (java.sql.Date) tableau.getAneeCreation());
+	        preparedStatement.setString(4, tableau.getDescription());
+	        preparedStatement.setDouble(5, tableau.getPrix());
+
+	        if (imageContent != null) {
+	            // Set the binary stream of the image
+	            preparedStatement.setBlob(6, imageContent);
+	        } else {
+	            // Set NULL if no image provided
+	            preparedStatement.setNull(6, Types.BLOB);
+	        }
+
+	        preparedStatement.executeUpdate();
+	    } finally {
+	        // Close resources in finally block to ensure they're closed even if an exception occurs
+	        if (preparedStatement != null) {
+	            preparedStatement.close();
+	        }
+	        if (connection != null) {
+	            connection.close();
+	        }
+	    }
+	}
+
+	//
+	public void insertExposition(Exposition exposition) throws SQLException {
+	    String sql = "INSERT INTO exposition (nom, dateDebut, dateFin, lieu) VALUES (?, ?, ?, ?)";
+	    try (Connection connection = getConnection(dbDriver);
+	         PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+	        preparedStatement.setString(1, exposition.getNom());
+	        preparedStatement.setDate(2, exposition.getDateDebut());
+	        preparedStatement.setDate(3, exposition.getDateFin());
+	        preparedStatement.setString(4, exposition.getLieu());
+
+	        preparedStatement.executeUpdate();
+	    } catch (SQLException e) {
+	        printSQLException(e);
+	    }
+	}
+	public void insertTransaction(Transaction transaction) throws SQLException {
+		 String sql = "INSERT INTO transaction (idOeuvre, idExposition, nomClient, dateVente, statut) VALUES (?, ?, ?, ?, ?)";
+		    try (Connection connection = getConnection(dbDriver);
+			    PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+	            preparedStatement.setInt(1, transaction.getIdOeuvre());
+	            preparedStatement.setInt(2, transaction.getIdExposition());
+	            preparedStatement.setString(3, transaction.getNomClient());
+	            preparedStatement.setDate(4, transaction.getDateVente());
+	            preparedStatement.setString(5, transaction.getStatut());
+
+	            preparedStatement.executeUpdate();
+	    } catch (SQLException e) {
+	        printSQLException(e);
+	    }
+	}
 }

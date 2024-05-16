@@ -19,6 +19,14 @@ public class Transaction {
 		this.dateVente = (Date) dateVente2;
 		this.statut = statut;
 	}
+	public Transaction(int idOeuvre, int idExposition, String nomClient, java.util.Date dateVente2, String statut) {
+		super();
+		this.idOeuvre = idOeuvre;
+		this.idExposition = idExposition;
+		this.nomClient = nomClient;
+		this.dateVente = (Date) dateVente2;
+		this.statut = statut;
+	}
 	public int getIdT() {
 		return idT;
 	}

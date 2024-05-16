@@ -284,78 +284,37 @@ if (session.getAttribute("username") != null) {
       
         <!--Container Main start-->
         <a href="<%=request.getContextPath()%>/newetudiant"> <i class='bx bx-plus'
-                style='color: #007bff; font-size: 40px;' title="Ajouter un Artist"></i></a>
+                style='color: #007bff; font-size: 40px;' title="Ajouter une transaction"></i></a>
 
 
-                <center><c:if test="${user != null}">
-                    <form action="updateetudiant" method="post" class="start">
-                </c:if>
-                <c:if test="${user == null}">
-                    <form action="insertetudiant" method="post" class="start">
-                </c:if>
-                
-                <caption>
-                    <h2>
-                        <c:if test="${user != null}">
-                Modifier l'etudiant <c:out value="${user.nom}" /> :	
-                <br>
-                 </c:if>
-                        <c:if test="${user == null}">
-                       Ajouter un artiste :
-                       
-                       <br>
-                    </c:if>
-                    </h2>
-                </caption>
-                
-                <c:if test="${user != null}">
-                    <input type="hidden" name="id" value="<c:out value='${user.id}' />" />
-                </c:if>
-                
-                
-               
-                <div class="form-floating mb-3">
-                    <input type="number" class="form-control" name="idtableau"  value="<c:out value='${user.nom}' />" id="floatingInput" placeholder="ID Tableau">
-                    <label for="floatingInput">ID Tableau</label>
-                  </div>
-                   <div class="form-floating mb-3">
-                    <input type="number" class="form-control" name="idexposition"  value="<c:out value='${user.nom}' />" id="floatingInput" placeholder="ID Exposition">
-                    <label for="floatingInput">ID Exposition</label>
-                  </div>
-                   <div class="form-floating mb-3">
-                    <input type="text" class="form-control" name="nomclient"  value="<c:out value='${user.nom}' />" id="floatingInput" placeholder="Nom Client">
-                    <label for="floatingInput">Nom Client</label>
-                  </div>
-                  <div class="form-floating mb-3">
-				    <input type="date" readonly class="form-control" name="datedebut" value="<c:out value='${user.nationalite}' />" id="floatingInput" placeholder="Date de vente">
-				    <label for="floatingInput">Date de Vente</label>
-				    <i class="bi bi-calendar"></i>
-				</div>
-				   
-                  <div class="form-floating mb-3">
-                    <input type="text" class="form-control" name="statut"  value="<c:out value='${user.nationalite}' />" id="floatingInput" placeholder="Statut">
-                    <label for="floatingInput">Statut</label>
-                  </div>
-            
-    </div>
-				                
-                <div class="col-12">
-                <c:if test="${user != null}">
-                <button class="btn btn-primary" type="submit">Modifier</button>
-                </c:if>
-                
-                <c:if test="${user == null}">
-                <button class="btn btn-primary" type="submit">Ajouter</button>
-                </c:if>
-                <c:if test="${user == null}">
-				<a href="<%=request.getContextPath()%>/transaction"> <i class='btn btn-danger'
-                style='color: #00000; font-size: 15px;' title="Ajouter un Etudiant">Annuler</i></a>
-                
-                </c:if>
-                </div>
-                </form>
-                </center>
-                
+               <center>
+    <h5>Ajouter une transaction :</h5>
+    <form action="${pageContext.request.contextPath}/insertTransaction" method="post">
+        <div class="form-floating mb-3">
+            <input type="number" class="form-control" name="idOeuvre" id="idOeuvre" placeholder="ID Tableau">
+            <label for="idOeuvre">ID Tableau</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="number" class="form-control" name="idExposition" id="idExposition" placeholder="ID Exposition">
+            <label for="idExposition">ID Exposition</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" name="nomClient" id="nomClient" placeholder="Nom Client">
+            <label for="nomClient">Nom Client</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="date" class="form-control" name="dateVente" id="dateVente" placeholder="Date de Vente">
+            <label for="dateVente">Date de Vente</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" name="statut" id="statut" placeholder="Statut">
+            <label for="statut">Statut</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Ajouter</button>
+        <a href="${pageContext.request.contextPath}/expositions" class="btn btn-danger">Annuler</a>
+    </form>
+</center>
+
                  
                    
                      

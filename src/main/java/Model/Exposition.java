@@ -18,6 +18,15 @@ public class Exposition {
 		this.dateFin = (Date) dateFin2;
 		this.lieu = lieu;
 	}
+	
+
+	public Exposition(String nom, java.util.Date dateDebut2, java.util.Date dateFin2, String lieu) {
+		super();
+		this.nom = nom;
+		this.dateDebut = (Date) dateDebut2;
+		this.dateFin = (Date) dateFin2;
+		this.lieu = lieu;
+	}
 	public String getNom() {
 		return nom;
 	}

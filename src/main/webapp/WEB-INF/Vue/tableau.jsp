@@ -3,6 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
     <title></title>
@@ -21,12 +23,11 @@
     <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 
 
-
-</head>
-<style>
-    @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
+    <style>
+ @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
 
     :root {
         --header-height: 3rem;
@@ -207,11 +208,10 @@
         .body-pd {
             padding-left: calc(var(--nav-width) + 188px)
         }
-    }
-</style>
+    }    </style>
+
 
 <body>
-
     <body id="body-pd">
         <header class="header" id="header">
             <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
@@ -233,252 +233,130 @@
                    </div>
                    
                  </div>
-                                </form>
-         
-                
-                <!-- </div> -->
-             </div>        </header>
-             
-             
-<body>
-<c:if test="${param.error eq 'deleteFailed'}">
-    <p>Error: Failed to delete the oeuvre.</p>
-</c:if>
-    <body id="body-pd">
-        <header class="header" id="header">
-            <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
-            <!-- <div class=" bg-gray-200" style="height:100% ;"> -->
-      
-                <div class="container h-screen flex justify-center items-center px-4 sm:px-6 lg:px-8" style="height:100% ;position:relative;left: 35%;margin-top:1%;">
-         	<form action="chercherindexdepartement" method="post" class="search-wrap">
-
-         
-                 <div class="relative">
-
-         
-                   <input name="nameUser" type="text" class="h-14 w-96 pr-8 pl-5 rounded z-0 focus:shadow focus:outline-none" placeholder="Search anything...">
-         
-                   <div class="absolute top-4 right-3">
-                   <button class="search-button" type="submit">									
-                     <i class="fa fa-search text-gray-400 z-20 hover:text-gray-500"></i>
-                     </button>
-                   </div>
-                   
-                 </div>
-                                </form>
-         
-                
-                <!-- </div> -->
-             </div>        </header>
-        <div class="l-navbar" id="nav-bar">
-            <nav class="nav">
-                <div> <a href="<%=request.getContextPath()%>/dashboard" class="nav_logo"> <i class='bx bx-layer nav_logo-icon'></i> 
-                <spanclass="nav_logo-name">Galerie d'Art</span> </a>
-                
-                <div class="nav_list"> 
-                <a href="<%=request.getContextPath()%>/artiste" class="nav_link active"> 
-                <i class='bx bxs-user'></i>
-                   <span class="nav_name">Artists</span> </a> 
-                   
-                     <a href="<%=request.getContextPath()%>/tableau" class="nav_link"> 
-                     <i class='bx bx-file-blank'></i> 
-                     <span class="nav_name">ArtWorks</span> </a>
-                     
-                      <a href="<%=request.getContextPath()%>/exposition" class="nav_link"> 
-                      <i class='bx bxs-show'></i> 
-                      <span class="nav_name">Exposition</span></a>
-                      
-                       <a href="<%=request.getContextPath()%>/transaction" class="nav_link"> 
-                     <i class='bx bxs-send'></i> <span class="nav_name">Transaction</span> </a>
-                                
-                    </div>
-                </div> <a href="<%=request.getContextPath()%>/Login" class="nav_link"> <i class='bx bx-log-in nav_icon'></i> <span
-                        class="nav_name">Login</span> </a>
-            </nav>
+            </form>
         </div>
-        <!--Container Main start-->
+    </header>
+
+    <div class="l-navbar" id="nav-bar">
+        <nav class="nav">
+            <div>
+                <a href="<%=request.getContextPath()%>/dashboard" class="nav_logo">
+                    <i class='bx bx-layer nav_logo-icon'></i>
+                    <span class="nav_logo-name">Galerie d'Art</span>
+                </a>
+                <div class="nav_list">
+                    <a href="<%=request.getContextPath()%>/artiste" class="nav_link active">
+                        <i class='bx bxs-user'></i>
+                        <span class="nav_name">Artists</span>
+                    </a>
+                    <a href="<%=request.getContextPath()%>/tableau" class="nav_link">
+                        <i class='bx bx-file-blank'></i>
+                        <span class="nav_name">ArtWorks</span>
+                    </a>
+                    <a href="<%=request.getContextPath()%>/exposition" class="nav_link">
+                        <i class='bx bxs-show'></i>
+                        <span class="nav_name">Exposition</span>
+                    </a>
+                    <a href="<%=request.getContextPath()%>/transaction" class="nav_link">
+                        <i class='bx bxs-send'></i>
+                        <span class="nav_name">Transaction</span>
+                    </a>
+                </div>
+            </div>
+            <a href="<%=request.getContextPath()%>/Login" class="nav_link">
+                <i class='bx bx-log-in nav_icon'></i>
+                <span class="nav_name">Login</span>
+            </a>
+        </nav>
+    </div>
+
         <div class="" style="position:relative; top: 10%;">
+    <a href="<%=request.getContextPath()%>/ajouterTableau">
+            <i class='bx bx-plus' style='color: #007bff; font-size: 40px;' title="Ajouter un Etudiant"></i>
+        </a>
         <table class="table">
             <thead>
-              <tr>
-                <th scope="col">ID Tableau</th>
-                <th scope="col">ID Artiste</th>
-                <th scope="col">Titre</th>
-                <th scope="col">Date de Creation</th>
-                <th scope="col">Description</th>
-                <th scope="col">Prix</th>
-                <th scope="col">Image</th>
-                <th scope="col">Action</th>
-                
-                
-              </tr>
-            </thead>
-               <a href="<%=request.getContextPath()%>/ajouterTableau"> <i class='bx bx-plus'
-                style='color: #007bff; font-size: 40px;' title="Ajouter un Etudiant"></i></a>
-
-            <tbody>
-              
-                  <c:forEach var="tableau" items="${Tableau}">
                 <tr>
-                    <td>${tableau.idO}</td>
-                    <td>${tableau.idArtiste}</td>
-                    <td>${tableau.titre}</td>
-                    <td>${tableau.anneeCreation}</td>
-                    <td>${tableau.description}</td>
-                    <td>${tableau.prix}</td>
-                    <td>img src="${pageContext.request.contextPath}/images/${tableau.image}" alt="${tableau.titre}" /></td>
-                   <td>
-                        <!-- Update link -->
-                                <a href="${pageContext.request.contextPath}/updateTableau?id=${tableau.idO}">
-                                    <i class="fas fa-edit"></i> Update
-                                </a>
-                                <!-- Delete link with confirmation -->
-<a href="${pageContext.request.contextPath}/deleteTableau?idO=${tableau.idO}" 
-   onclick="return confirm('Are you sure you want to delete this item?');">
-   <i class="fas fa-trash-alt"></i> Delete
-</a>
-                        </td>
+                    <th scope="col">ID Tableau</th>
+                    <th scope="col">ID Artiste</th>
+                    <th scope="col">Titre</th>
+                    <th scope="col">Date de Creation</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Prix</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Action</th>
                 </tr>
-            </c:forEach>
-               </tbody>
-          </table>         
-        
-</div>
-        <!--Container Main end-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-        <script>
-            document.addEventListener("DOMContentLoaded", function (event) {
-
-                const showNavbar = (toggleId, navId, bodyId, headerId) => {
-                    const toggle = document.getElementById(toggleId),
-                        nav = document.getElementById(navId),
-                        bodypd = document.getElementById(bodyId),
-                        headerpd = document.getElementById(headerId)
-
-                    // Validate that all variables exist
-                    if (toggle && nav && bodypd && headerpd) {
-                        toggle.addEventListener('click', () => {
-                            // show navbar
-                            nav.classList.toggle('show')
-                            // change icon
-                            toggle.classList.toggle('bx-x')
-             
-        <div class="l-navbar" id="nav-bar">
-            <nav class="nav">
-                <div> <a href="<%=request.getContextPath()%>/dashboard" class="nav_logo"> <i class='bx bx-layer nav_logo-icon'></i> 
-                <spanclass="nav_logo-name">Galerie d'Art</span> </a>
-                
-                <div class="nav_list"> 
-                <a href="<%=request.getContextPath()%>/artiste" class="nav_link active"> 
-                <i class='bx bxs-user'></i>
-                   <span class="nav_name">Artists</span> </a> 
-                   
-                     <a href="<%=request.getContextPath()%>/tableau" class="nav_link"> 
-                     <i class='bx bx-file-blank'></i> 
-                     <span class="nav_name">ArtWorks</span> </a>
-                     
-                      <a href="<%=request.getContextPath()%>/exposition" class="nav_link"> 
-                      <i class='bx bxs-show'></i> 
-                      <span class="nav_name">Exposition</span></a>
-                      
-                       <a href="<%=request.getContextPath()%>/transaction" class="nav_link"> 
-                     <i class='bx bxs-send'></i> <span class="nav_name">Transaction</span> </a>
-                                
-                    </div>
-                </div> <a href="<%=request.getContextPath()%>/Login" class="nav_link"> <i class='bx bx-log-in nav_icon'></i> <span
-                        class="nav_name">Login</span> </a>
-            </nav>
-        </div>
-        <!--Container Main start-->
-        <div class="" style="position:relative; top: 10%;">
-        <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">ID Tableau</th>
-                <th scope="col">ID Artiste</th>
-                <th scope="col">Titre</th>
-                <th scope="col">Date de Creation</th>
-                <th scope="col">Description</th>
-                <th scope="col">Prix</th>
-                <th scope="col">Image</th>
-                <th scope="col">Action</th>
-                
-                
-              </tr>
             </thead>
-               <a href="<%=request.getContextPath()%>/ajouterTableau"> <i class='bx bx-plus'
-                style='color: #007bff; font-size: 40px;' title="Ajouter un Etudiant"></i></a>
-
             <tbody>
-              
-                  <c:forEach var="tableau" items="${Tableau}">
-                <tr>
-                    <td>${tableau.idO}</td>
-                    <td>${tableau.idArtiste}</td>
-                    <td>${tableau.titre}</td>
-                    <td>${tableau.anneeCreation}</td>
-                    <td>${tableau.description}</td>
-                    <td>${tableau.prix}</td>
-                    <td>img src="${pageContext.request.contextPath}/images/${tableau.image}" alt="${tableau.titre}" /></td>
-                   <td>
-                        <!-- Update link -->
-                                <a href="${pageContext.request.contextPath}/updateTableau?id=${tableau.idO}">
-                                    <i class="fas fa-edit"></i> Update
-                                </a>
-                                <!-- Delete link with confirmation -->
-<a href="${pageContext.request.contextPath}/deleteTableau?idO=${tableau.idO}" 
-   onclick="return confirm('Are you sure you want to delete this item?');">
-   <i class="fas fa-trash-alt"></i> Delete
-</a>
+                <c:forEach var="tableau" items="${Tableau}">
+                    <tr>
+                        <td>${tableau.idO}</td>
+                        <td>${tableau.idArtiste}</td>
+                        <td>${tableau.titre}</td>
+                        <td>${tableau.aneeCreation}</td>
+                        <td>${tableau.description}</td>
+                        <td>${tableau.prix}</td>
+                        <td><img src="${pageContext.request.contextPath}/images/${tableau.image}" alt="${tableau.titre}" /></td>
+                        <td>
+                            <a href="${pageContext.request.contextPath}/updateTableau?id=${tableau.idO}">
+                                <i class="fas fa-edit"></i> Update
+                            </a>
+                            <a href="${pageContext.request.contextPath}/deleteTableau?idO=${tableau.idO}" onclick="return confirm('Are you sure you want to delete this item?');">
+                                <i class="fas fa-trash-alt"></i> Delete
+                            </a>
                         </td>
-                </tr>
-            </c:forEach>
-               </tbody>
-          </table>         
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
         
-</div>
-        <!--Container Main end-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-        <script>
-            document.addEventListener("DOMContentLoaded", function (event) {
+    </div>
 
-                const showNavbar = (toggleId, navId, bodyId, headerId) => {
-                    const toggle = document.getElementById(toggleId),
-                        nav = document.getElementById(navId),
-                        bodypd = document.getElementById(bodyId),
-                        headerpd = document.getElementById(headerId)
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function (event) {
 
-                    // Validate that all variables exist
-                    if (toggle && nav && bodypd && headerpd) {
-                        toggle.addEventListener('click', () => {
-                            // show navbar
-                            nav.classList.toggle('show')
-                            // change icon
-                            toggle.classList.toggle('bx-x')
-                            // add padding to body
-                            bodypd.classList.toggle('body-pd')
-                            // add padding to header
-                            headerpd.classList.toggle('body-pd')
-                        })
-                    }
+            const showNavbar = (toggleId, navId, bodyId, headerId) => {
+                const toggle = document.getElementById(toggleId),
+                    nav = document.getElementById(navId),
+                    bodypd = document.getElementById(bodyId),
+                    headerpd = document.getElementById(headerId)
+
+                // Validate that all variables exist
+                if (toggle && nav && bodypd && headerpd) {
+                    toggle.addEventListener('click', () => {
+                        // show navbar
+                        nav.classList.toggle('show')
+                        // change icon
+                        toggle.classList.toggle('bx-x')
+                        // add padding to body
+                        bodypd.classList.toggle('body-pd')
+                        // add padding to header
+                        headerpd.classList.toggle('body-pd')
+                    })
                 }
+            }
 
-                showNavbar('header-toggle', 'nav-bar', 'body-pd', 'header')
+            showNavbar('header-toggle', 'nav-bar', 'body-pd', 'header')
 
-                /*===== LINK ACTIVE =====*/
-                const linkColor = document.querySelectorAll('.nav_link')
+            /*===== LINK ACTIVE =====*/
+            const linkColor = document.querySelectorAll('.nav_link')
 
-                function colorLink() {
-                    if (linkColor) {
-                        linkColor.forEach(l => l.classList.remove('active'))
-                        this.classList.add('active')
-                    }
+            function colorLink() {
+                if (linkColor) {
+                    linkColor.forEach(l => l.classList.remove('active'))
+                    this.classList.add('active')
                 }
-                linkColor.forEach(l => l.addEventListener('click', colorLink))
+            }
+            linkColor.forEach(l => l.addEventListener('click', colorLink))
 
-                // Your code to run since DOM is loaded and ready
-            });
-        </script>
-    </body>
+            // Your code to run since DOM is loaded and ready
+        });
+    </script>    </script>
+</body>
 
 </html>
+
+      

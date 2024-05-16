@@ -1,6 +1,7 @@
 package Controler;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -14,7 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
+import javax.servlet.http.Part;
 
 import Model.Artiste;
 import Model.Exposition;
@@ -97,6 +98,18 @@ public class AdminLogin extends HttpServlet {
 	            case "/insertArtiste":
 	            	insertArtiste(request, response);
 		                break;
+		                
+	            case "/insertTableau":
+	            	insertTableau(request, response);
+			                break;
+			                
+			    case "/insertExposition":
+			        	insertExposition(request, response);
+			        	 break;
+			    case "/insertTransaction":
+			    	insertTransaction(request, response);
+			                break; 
+			               
 	            // Other cases
 	            default:
 	                listUserIndex(request, response);
@@ -319,6 +332,118 @@ public class AdminLogin extends HttpServlet {
 	    response.sendRedirect(request.getContextPath() + "/artiste");
 	}
 
+	private void insertTableau(HttpServletRequest request, HttpServletResponse response)
+	        throws SQLException, IOException, ServletException {
+	    String idArtisteStr = request.getParameter("idArtiste");
+	    String titre = request.getParameter("titre");
+	    String anneeCreationStr = request.getParameter("aneeCreation");
+	    String description = request.getParameter("description");
+	    String prixStr = request.getParameter("prix");
 
+	    // Validate and convert parameters
+	    int idArtiste = 0;
+	    double prix = 0.0;
+	    java.sql.Date anneeCreation = null;
+
+	    // Validate idArtiste
+	    if (idArtisteStr != null && !idArtisteStr.isEmpty()) {
+	        idArtiste = Integer.parseInt(idArtisteStr);
+	    } else {
+	        // Handle error: idArtiste is missing
+	        // You can redirect the user to an error page or display a message
+	        response.sendError(HttpServletResponse.SC_BAD_REQUEST, "ID Artiste is required");
+	        return;
+	    }
+
+	    // Validate titre
+	    if (titre != null && !titre.isEmpty()) {
+	        // Handle case where titre is valid
+	    } else {
+	        // Handle error: titre is missing
+	        // You can redirect the user to an error page or display a message
+	        response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Titre is required");
+	        return;
+	    }
+
+	    // Validate prix
+	    if (prixStr != null && !prixStr.isEmpty()) {
+	        prix = Double.parseDouble(prixStr);
+	    } else {
+	        // Handle error: prix is missing
+	        // You can redirect the user to an error page or display a message
+	        response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Prix is required");
+	        return;
+	    }
+
+	    // Validate anneeCreation
+	    if (anneeCreationStr != null && !anneeCreationStr.isEmpty()) {
+	        anneeCreation = java.sql.Date.valueOf(anneeCreationStr);
+	    } else {
+	        // Handle error: anneeCreation is missing
+	        // You can redirect the user to an error page or display a message
+	        response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Date de Création is required");
+	        return;
+	    }
+
+	    // Handle file upload
+	    Part filePart = request.getPart("image");
+	    String fileName = null;
+	    InputStream fileContent = null;
+
+	    if (filePart != null) {
+	        fileName = getFileName(filePart);
+	        fileContent = filePart.getInputStream();
+	    }
+
+	    Tableau newTableau = new Tableau(idArtiste, titre, anneeCreation, description, prix, fileName);
+	    dao.insertTableau(newTableau, fileContent);
+
+	    response.sendRedirect(request.getContextPath() + "/tableau");
+	}
+
+
+	private String getFileName(Part part) {
+	    String contentDisposition = part.getHeader("content-disposition");
+	    if (contentDisposition != null && !contentDisposition.isEmpty()) {
+	        String[] tokens = contentDisposition.split(";");
+	        for (String token : tokens) {
+	            if (token.trim().startsWith("filename")) {
+	                return token.substring(token.indexOf('=') + 2, token.length() - 1);
+	            }
+	        }
+	    }
+	    return "";
+	}
+
+ 	 private void insertExposition(HttpServletRequest request, HttpServletResponse response)
+		        throws SQLException, IOException, ServletException {
+		    String nom = request.getParameter("nom");
+		    Date dateDebut = Date.valueOf(request.getParameter("dateDebut"));
+		    Date dateFin = Date.valueOf(request.getParameter("dateFin"));
+		    String lieu = request.getParameter("lieu");
+
+		    System.out.println("Nom: " + nom);
+		    System.out.println("Date Debut: " + dateDebut);
+		    System.out.println("Date Fin: " + dateFin);
+		    System.out.println("Lieu: " + lieu);
+
+		    Exposition exposition = new Exposition(nom, dateDebut, dateFin, lieu);
+		    dao.insertExposition(exposition);
+
+		    response.sendRedirect(request.getContextPath() + "/exposition");
+		}
+	 private void insertTransaction(HttpServletRequest request, HttpServletResponse response)
+	            throws SQLException, IOException, ServletException {
+	        int idOeuvre = Integer.parseInt(request.getParameter("idOeuvre"));
+	        int idExposition = Integer.parseInt(request.getParameter("idExposition"));
+	        String nomClient = request.getParameter("nomClient");
+	        Date dateVente = Date.valueOf(request.getParameter("dateVente"));
+	        String statut = request.getParameter("statut");
+
+	        Transaction transaction = new Transaction(idOeuvre, idExposition, nomClient, dateVente, statut);
+	        dao.insertTransaction(transaction);
+
+	        response.sendRedirect(request.getContextPath() + "/transaction");
+	    }
 
 }

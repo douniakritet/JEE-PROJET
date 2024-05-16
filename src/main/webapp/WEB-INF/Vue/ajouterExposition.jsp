@@ -287,77 +287,33 @@ if (session.getAttribute("username") != null) {
                 style='color: #007bff; font-size: 40px;' title="Ajouter un Artist"></i></a>
 
 
-                <center><c:if test="${user != null}">
-                    <form action="updateetudiant" method="post" class="start">
-                </c:if>
-                <c:if test="${user == null}">
-                    <form action="insertetudiant" method="post" class="start">
-                </c:if>
-                
-                <caption>
-                    <h2>
-                        <c:if test="${user != null}">
-                Modifier l'etudiant <c:out value="${user.nom}" /> :	
-                <br>
-                 </c:if>
-                        <c:if test="${user == null}">
-                       Ajouter un artiste :
-                       
-                       <br>
-                    </c:if>
-                    </h2>
-                </caption>
-                
-                <c:if test="${user != null}">
-                    <input type="hidden" name="id" value="<c:out value='${user.id}' />" />
-                </c:if>
-                
-                
-               
-                <div class="form-floating mb-3">
-                    <input type="text" class="form-control" name="exposition"  value="<c:out value='${user.nom}' />" id="floatingInput" placeholder="Nom Exposition">
-                    <label for="floatingInput">Nom</label>
-                  </div>
-                 
-                  <div class="form-floating mb-3">
-				    <input type="date" readonly class="form-control" name="datedebut" value="<c:out value='${user.nationalite}' />" id="floatingInput" placeholder="Date Debut">
-				    <label for="floatingInput">Date Debut</label>
-				    <i class="bi bi-calendar"></i>
-				</div>
-				    <div class="form-floating mb-3">
-				    <input type="date" readonly class="form-control" name="datefin" value="<c:out value='${user.nationalite}' />" id="floatingInput" placeholder="Date Fin">
-				    <label for="floatingInput">Date Fin</label>
-				    <i class="bi bi-calendar"></i>
-				</div>
-                  <div class="form-floating mb-3">
-                    <input type="text" class="form-control" name="lieu"  value="<c:out value='${user.nationalite}' />" id="floatingInput" placeholder="Lieu">
-                    <label for="floatingInput">Lieu</label>
-                  </div>
-            
-    </div>
-				                
-                <div class="col-12">
-                <c:if test="${user != null}">
-                <button class="btn btn-primary" type="submit">Modifier</button>
-                </c:if>
-                
-                <c:if test="${user == null}">
-                <button class="btn btn-primary" type="submit">Ajouter</button>
-                </c:if>
-                <c:if test="${user == null}">
-				<a href="<%=request.getContextPath()%>/exposition"> <i class='btn btn-danger'
-                style='color: #00000; font-size: 15px;' title="Ajouter un Etudiant">Annuler</i></a>
-                
-                </c:if>
-                </div>
-                </form>
-                </center>
-                
-                 
-                   
-                     
-                    </form>
+    <center>
+    <h5>Ajouter une exposition :</h5>
+    <form action="${pageContext.request.contextPath}/insertExposition" method="post">
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" name="nom" id="nom" placeholder="Nom de l'exposition">
+            <label for="nom">Nom</label>
         </div>
+        <div class="form-floating mb-3">
+            <input type="date" class="form-control" name="dateDebut" id="dateDebut" placeholder="Date de Début">
+            <label for="dateDebut">Date de Début</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="date" class="form-control" name="dateFin" id="dateFin" placeholder="Date de Fin">
+            <label for="dateFin">Date de Fin</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" name="lieu" id="lieu" placeholder="Lieu">
+            <label for="lieu">Lieu</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Ajouter</button>
+        <a href="${pageContext.request.contextPath}/expositions" class="btn btn-danger">Annuler</a>
+    </form>
+</center>
+
+
+          
+             
         <!--Container Main end-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">

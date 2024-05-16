@@ -6,21 +6,28 @@ public class Tableau {
     private int idO;
     private int idArtiste;
     private String titre;
-    private Date anneeCreation;
+    private Date aneeCreation;
     private String description;
-    private Double prix;
+    private double prix;
     private String image;
 
-    public Tableau(int idO, int idArtiste, String titre, Date anneeCreation, String description, Double prix, String image) {
+    public Tableau(int idO, int idArtiste, String titre, Date aneeCreation, String description, Double prix, String image) {
         this.idO = idO;
         this.idArtiste = idArtiste;
         this.titre = titre;
-        this.anneeCreation = anneeCreation;
+        this.aneeCreation = aneeCreation;
         this.description = description;
         this.prix = prix;
         this.image = image;
     }
-
+    public Tableau(int idArtiste, String titre, Date aneeCreation, String description, Double prix, String image) {
+        this.idArtiste = idArtiste;
+        this.titre = titre;
+        this.aneeCreation = aneeCreation;
+        this.description = description;
+        this.prix = prix;
+        this.image = image;
+    }
     // Getters and Setters
     public int getIdO() {
         return idO;
@@ -46,12 +53,12 @@ public class Tableau {
         this.titre = titre;
     }
 
-    public Date getAnneeCreation() {
-        return anneeCreation;
+    public Date getAneeCreation() {
+        return aneeCreation;
     }
 
-    public void setAnneeCreation(Date anneeCreation) {
-        this.anneeCreation = anneeCreation;
+    public void setAneeCreation(Date aneeCreation) {
+        this.aneeCreation = aneeCreation;
     }
 
     public String getDescription() {

@@ -287,83 +287,40 @@ if (session.getAttribute("username") != null) {
                 style='color: #007bff; font-size: 40px;' title="Ajouter un Artist"></i></a>
 
 
-                <center><c:if test="${user != null}">
-                    <form action="updateetudiant" method="post" class="start">
-                </c:if>
-                <c:if test="${user == null}">
-                    <form action="insertetudiant" method="post" class="start">
-                </c:if>
-                
-                <caption>
-                    <h2>
-                        <c:if test="${user != null}">
-                Modifier l'etudiant <c:out value="${user.nom}" /> :	
-                <br>
-                 </c:if>
-                        <c:if test="${user == null}">
-                       Ajouter un artiste :
-                       
-                       <br>
-                    </c:if>
-                    </h2>
-                </caption>
-                
-                <c:if test="${user != null}">
-                    <input type="hidden" name="id" value="<c:out value='${user.id}' />" />
-                </c:if>
-                
-                
-               
-                <div class="form-floating mb-3">
-                    <input type="text" class="form-control" name="idArtiste"  value="<c:out value='${user.nom}' />" id="floatingInput" placeholder="IDArtiste">
-                    <label for="floatingInput">ID Artiste</label>
-                  </div>
-                  <div class="form-floating mb-3">
-                    <input type="text" class="form-control" name="titre"  value="<c:out value='${user.nationalite}' />" id="floatingInput" placeholder="titre">
-                    <label for="floatingInput">Titre</label>
-                  </div>
-                  <div class="form-floating mb-3">
-				    <input type="date" readonly class="form-control" name="annee" value="<c:out value='${user.nationalite}' />" id="floatingInput" placeholder="Date de Creation">
-				    <label for="floatingInput">Date de Creation</label>
-				    <i class="bi bi-calendar"></i>
-				</div>
-                  <div class="form-floating mb-3">
-                    <input type="text" class="form-control" name="description"  value="<c:out value='${user.nationalite}' />" id="floatingInput" placeholder="Description">
-                    <label for="floatingInput">Description</label>
-                  </div>
-                    
-                 <div class="form-floating mb-3">
-                    <input type="number" class="form-control" name="prix"  value="<c:out value='${user.nationalite}' />" id="floatingInput" placeholder="Prix">
-                    <label for="floatingInput">Prix</label>
-                  </div>
-                
-               <div class="form-floating mb-3">
-                <input type="file" class="form-control" name="image"  value="<c:out value='${user.nationalite}' />" id="imageUpload" placeholder="image">
-                <label for="imageUpload">Upload Image</label>
+<center>
+    <form action="insertTableau" method="post" enctype="multipart/form-data">
+        <div class="form-floating mb-3">
+            <input type="number" class="form-control" name="idArtiste" id="idArtiste" placeholder="ID Artiste" required>
+            <label for="idArtiste">ID Artiste</label>
+        </div>
         
-    </div>
-				                
-                <div class="col-12">
-                <c:if test="${user != null}">
-                <button class="btn btn-primary" type="submit">Modifier</button>
-                </c:if>
-                
-                <c:if test="${user == null}">
-                <button class="btn btn-primary" type="submit">Ajouter</button>
-                </c:if>
-                <c:if test="${user == null}">
-				<a href="<%=request.getContextPath()%>/tableau"> <i class='btn btn-danger'
-                style='color: #00000; font-size: 15px;' title="Ajouter un Etudiant">Annuler</i></a>
-                
-                </c:if>
-                </div>
-                </form>
-                </center>
-                
-                 
-                   
-                     
-                    </form>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" name="titre" id="titre" placeholder="Titre" required>
+            <label for="titre">Titre</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="date" class="form-control" name="aneeCreation" id="aneeCreation" placeholder="Date de Création" required>
+            <label for="anneeCreation">Date de Création</label>
+        </div>
+        <div class="form-floating mb-3">
+            <textarea class="form-control" name="description" id="description" placeholder="Description" required></textarea>
+            <label for="description">Description</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="number" class="form-control" name="prix" id="prix" placeholder="Prix" required>
+            <label for="prix">Prix</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="file" class="form-control" name="image" id="image" required>
+            <label for="image">Upload Image</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Ajouter</button>
+        <a href="${pageContext.request.contextPath}/tableau" class="btn btn-danger">Annuler</a>
+    </form>
+</center>
+
+
+               
         </div>
         <!--Container Main end-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"

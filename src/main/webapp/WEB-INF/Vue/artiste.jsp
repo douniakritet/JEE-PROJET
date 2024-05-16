@@ -211,7 +211,6 @@
     }
 </style>
 
-<body>
 
     <body id="body-pd">
         <header class="header" id="header">
