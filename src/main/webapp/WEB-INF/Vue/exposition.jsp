@@ -293,10 +293,10 @@
             <td>${exposition.dateFin}</td>
             <td>${exposition.lieu}</td>
             <td>
-                        <a href="${pageContext.request.contextPath}/updateExposition?id=${exposition.idE}">
+                        <a href="${pageContext.request.contextPath}/updateExposition?idE=${exposition.idE}">
                             <i class="fas fa-edit"></i> Update
                         </a>
-                        <a href="${pageContext.request.contextPath}/deleteExposition?id=${exposition.idE}" 
+                        <a href="${pageContext.request.contextPath}/deleteExposition?idE=${exposition.idE}" 
                            onclick="return confirm('Are you sure you want to delete this item?');">
                             <i class="fas fa-trash-alt"></i> Delete
                         </a>

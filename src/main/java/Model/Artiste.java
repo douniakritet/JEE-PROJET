@@ -20,6 +20,13 @@ public class Artiste {
 		this.nationalite = nationalite;
 		this.dateNaissance = (Date) dateNaissance2;
 	}
+	
+	public Artiste(String nom, String nationalite, java.util.Date dateNaissance2) {
+		super();
+		this.nom = nom;
+		this.nationalite = nationalite;
+		this.dateNaissance = (Date) dateNaissance2;
+	}
 
 	public int getId() {
 		return id;

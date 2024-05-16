@@ -283,75 +283,35 @@ if (session.getAttribute("username") != null) {
         </div>
       
         <!--Container Main start-->
-        <a href="<%=request.getContextPath()%>/newetudiant"> <i class='bx bx-plus'
-                style='color: #007bff; font-size: 40px;' title="Ajouter un Artist"></i></a>
+        <!--Container Main start-->
+        
 
+                <center>
+                
+                <h5>Ajouter un artiste :</h5>
+                
+                <form action="insertArtiste" method="post">
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" name="nom" id="nom" placeholder="Nom de l'artiste">
+        <label for="nom">Nom de l'artiste</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" name="nationalite" id="nationalite" placeholder="Nationalité de l'artiste">
+        <label for="nationalite">Nationalité de l'artiste</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input type="date" class="form-control" name="dateNaissance" id="dateNaissance" placeholder="Date de naissance de l'artiste">
+        <label for="dateNaissance">Date de naissance de l'artiste</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Ajouter</button>
+                            <a href="${pageContext.request.contextPath}/artiste">
+    <button type="" class="btn btn-danger">Annule</button></a>
+</form>
 
-                <center><c:if test="${user != null}">
-                    <form action="updateetudiant" method="post" class="start">
-                </c:if>
-                <c:if test="${user == null}">
-                    <form action="insertetudiant" method="post" class="start">
-                </c:if>
-                
-                <caption>
-                    <h2>
-                        <c:if test="${user != null}">
-                Modifier l'etudiant <c:out value="${user.nom}" /> :	
-                <br>
-                 </c:if>
-                        <c:if test="${user == null}">
-                       Ajouter un artiste :
-                       
-                       <br>
-                    </c:if>
-                    </h2>
-                </caption>
-                
-                <c:if test="${user != null}">
-                    <input type="hidden" name="id" value="<c:out value='${user.id}' />" />
-                </c:if>
-                
-                
-               
-                <div class="form-floating mb-3">
-                    <input type="text" class="form-control" name="name"  value="<c:out value='${user.nom}' />" id="floatingInput" placeholder="Nom">
-                    <label for="floatingInput">Nom</label>
-                  </div>
-                  <div class="form-floating mb-3">
-                    <input type="text" class="form-control" name="nationalite"  value="<c:out value='${user.nationalite}' />" id="floatingInput" placeholder="Nationalite">
-                    <label for="floatingInput">Nationalite</label>
-                  </div>
-                  
-                    
-                <div class="form-floating mb-3">
-    <input type="date" class="form-control" name="date" value="<c:out value='${user.dateNaissance}' />" id="floatingInput" placeholder="Date de Naissance">
-    <label for="floatingInput">Date de Naissance</label>
-    <i class="bi bi-calendar"></i>
-</div>
-
-                
-                
-                
-                
-                <div class="col-12">
-                <c:if test="${user != null}">
-                <button class="btn btn-primary" type="submit">Modifier</button>
-                </c:if>
-                
-                <c:if test="${user == null}">
-                <button class="btn btn-primary" type="submit">Ajouter</button>
-                </c:if>
-                <c:if test="${user == null}">
-				<a href="<%=request.getContextPath()%>/artiste"> <i class='btn btn-danger'
-                style='color: #00000; font-size: 15px;' title="Ajouter un Etudiant">Annuler</i></a>
-                
-                </c:if>
-                </div>
-                </form>
                 </center>
                 
-                 
+                
+                
                    
                      
                     </form>

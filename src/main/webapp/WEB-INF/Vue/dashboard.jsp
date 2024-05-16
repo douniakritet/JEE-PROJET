@@ -279,17 +279,30 @@
               </tr>
             </thead>
             <tbody>
-                <c:forEach var="user" items="${Artiste}">
-             
-                             <tr>
-                                 <td><c:out value="${artiste.idAr}" /></td>
-                                 <td><c:out value="${artiste.nom}" /></td>
-                                 <td><c:out value="${artiste.narionalite}" /></td>
-                                 <td><c:out value="${artiste.dateNaissance}" /></td>
-                           
-                                 
-                             </tr>
-                         </c:forEach>
+            <c:forEach var="transaction" items="${Transaction}">
+    <tr>
+        <td><c:out value="${transaction.idT}" /></td>
+        <td><c:out value="${transaction.idOeuvre}" /></td>
+        <td><c:out value="${transaction.idExposition}" /></td>
+        <td><c:out value="${transaction.nomClient}" /></td>
+        <td><c:out value="${transaction.dateVente}" /></td>
+        <c:choose>
+            <c:when test="${transaction.statut == 'en cours'}">
+                <td style="color: blue;"><c:out value="${transaction.statut}" /></td>
+            </c:when>
+            <c:when test="${transaction.statut == 'annulée'}">
+                <td style="color: red;"><c:out value="${transaction.statut}" /></td>
+            </c:when>
+            <c:when test="${transaction.statut == 'terminé'}">
+                <td style="color: green;"><c:out value="${transaction.statut}" /></td>
+            </c:when>
+            <c:otherwise>
+                <td><c:out value="${transaction.statut}" /></td>
+            </c:otherwise>
+        </c:choose>
+    </tr>
+</c:forEach>
+
                  
                </tbody>
           </table>         

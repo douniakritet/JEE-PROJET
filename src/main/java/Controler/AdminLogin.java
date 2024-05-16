@@ -1,8 +1,10 @@
 package Controler;
 
 import java.io.IOException;
-
+import java.sql.Date;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -12,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 
 import Model.Artiste;
 import Model.Exposition;
@@ -37,6 +40,7 @@ public class AdminLogin extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+		
 	}
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    String action = request.getServletPath();
@@ -50,7 +54,7 @@ public class AdminLogin extends HttpServlet {
 	                logout(request, response);
 	                break;
 	            case "/dashboard":
-	                dashboard(request, response);
+	            	listTransaction(request, response);
 	                break;
 	            case "/artiste":
 	                listArtiste(request, response);
@@ -83,6 +87,16 @@ public class AdminLogin extends HttpServlet {
 	            case "/deleteTableau":
 	                deleteTableau(request, response);
 	                break;
+	                
+	            case "/deleteExposition":
+	            	deleteExposition(request, response);
+	                break;
+	            case "/deleteTransaction":
+	            	deleteTransaction(request, response);
+	                break;
+	            case "/insertArtiste":
+	            	insertArtiste(request, response);
+		                break;
 	            // Other cases
 	            default:
 	                listUserIndex(request, response);
@@ -209,6 +223,27 @@ public class AdminLogin extends HttpServlet {
 	    }
 	}
 
+	private void deleteExposition(HttpServletRequest request, HttpServletResponse response)
+	        throws SQLException, IOException {
+	    int idE = Integer.parseInt(request.getParameter("idE"));
+	    try {
+	        dao.deleteExposition(idE); // Appeler deleteExposition au lieu de deleteTableau
+	        response.sendRedirect(request.getContextPath() + "/exposition");
+	    } catch (SQLException e) {
+	        response.sendRedirect(request.getContextPath() + "/exposition?error=deleteFailed");
+	    }
+	}
+	private void deleteTransaction(HttpServletRequest request, HttpServletResponse response)
+	        throws SQLException, IOException {
+		int idT = Integer.parseInt(request.getParameter("idT")); // Assurez-vous que "idT" est le bon nom de paramètre
+		dao.deleteTransaction(idT); // Assurez-vous que vous appelez la méthode deleteTransaction, car vous supprimez une transaction
+	    try {
+	        dao.deleteTransaction(idT);
+	        response.sendRedirect(request.getContextPath() + "/transaction");
+	    } catch (SQLException e) {
+	        response.sendRedirect(request.getContextPath() + "/transaction?error=deleteFailed");
+	    }
+	}
 
 
 	private void ajouterTableau(HttpServletRequest request, HttpServletResponse response)
@@ -265,5 +300,25 @@ public class AdminLogin extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/Vue/transaction.jsp");
 		dispatcher.forward(request, response);
 	}
+	
+	private void insertArtiste(HttpServletRequest request, HttpServletResponse response)
+	        throws SQLException, IOException {
+	    String nom = request.getParameter("nom");
+	    String nationalite = request.getParameter("nationalite");
+	    
+	    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	    Date dateNaissance = null;
+	    try {
+	        dateNaissance = new Date(dateFormat.parse(request.getParameter("dateNaissance")).getTime());
+	    } catch (ParseException e) {
+	        e.printStackTrace(); 
+	    }
+
+	    Artiste artiste = new Artiste(nom, nationalite, dateNaissance);
+	    dao.insertArtiste(artiste);
+	    response.sendRedirect(request.getContextPath() + "/artiste");
+	}
+
+
 
 }

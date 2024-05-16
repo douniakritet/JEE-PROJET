@@ -296,13 +296,14 @@
                                  <td><c:out value="${transaction.statut}" /></td>
                            
                                  <td>
-                        <a href="${pageContext.request.contextPath}/updateExposition?id=${transaction.idT}">
+                        <a href="${pageContext.request.contextPath}/updateExposition?idT=${transaction.idT}">
                             <i class="fas fa-edit"></i> Update
                         </a>
-                        <a href="${pageContext.request.contextPath}/deleteExposition?id=${transaction.idT}" 
-                           onclick="return confirm('Are you sure you want to delete this item?');">
-                            <i class="fas fa-trash-alt"></i> Delete
-                        </a>
+                       <a href="${pageContext.request.contextPath}/deleteTransaction?idT=${transaction.idT}" 
+   onclick="return confirm('Are you sure you want to delete this item?');">
+    <i class="fas fa-trash-alt"></i> Delete
+</a>
+
                         </td>
                              </tr>
                          </c:forEach>
