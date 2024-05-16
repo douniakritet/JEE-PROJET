@@ -238,6 +238,38 @@
                 
                 <!-- </div> -->
              </div>        </header>
+             
+             
+<body>
+<c:if test="${param.error eq 'deleteFailed'}">
+    <p>Error: Failed to delete the oeuvre.</p>
+</c:if>
+    <body id="body-pd">
+        <header class="header" id="header">
+            <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
+            <!-- <div class=" bg-gray-200" style="height:100% ;"> -->
+      
+                <div class="container h-screen flex justify-center items-center px-4 sm:px-6 lg:px-8" style="height:100% ;position:relative;left: 35%;margin-top:1%;">
+         	<form action="chercherindexdepartement" method="post" class="search-wrap">
+
+         
+                 <div class="relative">
+
+         
+                   <input name="nameUser" type="text" class="h-14 w-96 pr-8 pl-5 rounded z-0 focus:shadow focus:outline-none" placeholder="Search anything...">
+         
+                   <div class="absolute top-4 right-3">
+                   <button class="search-button" type="submit">									
+                     <i class="fa fa-search text-gray-400 z-20 hover:text-gray-500"></i>
+                     </button>
+                   </div>
+                   
+                 </div>
+                                </form>
+         
+                
+                <!-- </div> -->
+             </div>        </header>
         <div class="l-navbar" id="nav-bar">
             <nav class="nav">
                 <div> <a href="<%=request.getContextPath()%>/dashboard" class="nav_logo"> <i class='bx bx-layer nav_logo-icon'></i> 
@@ -296,13 +328,108 @@
                     <td>${tableau.prix}</td>
                     <td>img src="${pageContext.request.contextPath}/images/${tableau.image}" alt="${tableau.titre}" /></td>
                    <td>
-                        <a href="${pageContext.request.contextPath}/updateExposition?id=${exposition.idE}">
-                            <i class="fas fa-edit"></i> Update
-                        </a>
-                        <a href="${pageContext.request.contextPath}/deleteExposition?id=${exposition.idE}" 
-                           onclick="return confirm('Are you sure you want to delete this item?');">
-                            <i class="fas fa-trash-alt"></i> Delete
-                        </a>
+                        <!-- Update link -->
+                                <a href="${pageContext.request.contextPath}/updateTableau?id=${tableau.idO}">
+                                    <i class="fas fa-edit"></i> Update
+                                </a>
+                                <!-- Delete link with confirmation -->
+<a href="${pageContext.request.contextPath}/deleteTableau?idO=${tableau.idO}" 
+   onclick="return confirm('Are you sure you want to delete this item?');">
+   <i class="fas fa-trash-alt"></i> Delete
+</a>
+                        </td>
+                </tr>
+            </c:forEach>
+               </tbody>
+          </table>         
+        
+</div>
+        <!--Container Main end-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function (event) {
+
+                const showNavbar = (toggleId, navId, bodyId, headerId) => {
+                    const toggle = document.getElementById(toggleId),
+                        nav = document.getElementById(navId),
+                        bodypd = document.getElementById(bodyId),
+                        headerpd = document.getElementById(headerId)
+
+                    // Validate that all variables exist
+                    if (toggle && nav && bodypd && headerpd) {
+                        toggle.addEventListener('click', () => {
+                            // show navbar
+                            nav.classList.toggle('show')
+                            // change icon
+                            toggle.classList.toggle('bx-x')
+             
+        <div class="l-navbar" id="nav-bar">
+            <nav class="nav">
+                <div> <a href="<%=request.getContextPath()%>/dashboard" class="nav_logo"> <i class='bx bx-layer nav_logo-icon'></i> 
+                <spanclass="nav_logo-name">Galerie d'Art</span> </a>
+                
+                <div class="nav_list"> 
+                <a href="<%=request.getContextPath()%>/artiste" class="nav_link active"> 
+                <i class='bx bxs-user'></i>
+                   <span class="nav_name">Artists</span> </a> 
+                   
+                     <a href="<%=request.getContextPath()%>/tableau" class="nav_link"> 
+                     <i class='bx bx-file-blank'></i> 
+                     <span class="nav_name">ArtWorks</span> </a>
+                     
+                      <a href="<%=request.getContextPath()%>/exposition" class="nav_link"> 
+                      <i class='bx bxs-show'></i> 
+                      <span class="nav_name">Exposition</span></a>
+                      
+                       <a href="<%=request.getContextPath()%>/transaction" class="nav_link"> 
+                     <i class='bx bxs-send'></i> <span class="nav_name">Transaction</span> </a>
+                                
+                    </div>
+                </div> <a href="<%=request.getContextPath()%>/Login" class="nav_link"> <i class='bx bx-log-in nav_icon'></i> <span
+                        class="nav_name">Login</span> </a>
+            </nav>
+        </div>
+        <!--Container Main start-->
+        <div class="" style="position:relative; top: 10%;">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">ID Tableau</th>
+                <th scope="col">ID Artiste</th>
+                <th scope="col">Titre</th>
+                <th scope="col">Date de Creation</th>
+                <th scope="col">Description</th>
+                <th scope="col">Prix</th>
+                <th scope="col">Image</th>
+                <th scope="col">Action</th>
+                
+                
+              </tr>
+            </thead>
+               <a href="<%=request.getContextPath()%>/ajouterTableau"> <i class='bx bx-plus'
+                style='color: #007bff; font-size: 40px;' title="Ajouter un Etudiant"></i></a>
+
+            <tbody>
+              
+                  <c:forEach var="tableau" items="${Tableau}">
+                <tr>
+                    <td>${tableau.idO}</td>
+                    <td>${tableau.idArtiste}</td>
+                    <td>${tableau.titre}</td>
+                    <td>${tableau.anneeCreation}</td>
+                    <td>${tableau.description}</td>
+                    <td>${tableau.prix}</td>
+                    <td>img src="${pageContext.request.contextPath}/images/${tableau.image}" alt="${tableau.titre}" /></td>
+                   <td>
+                        <!-- Update link -->
+                                <a href="${pageContext.request.contextPath}/updateTableau?id=${tableau.idO}">
+                                    <i class="fas fa-edit"></i> Update
+                                </a>
+                                <!-- Delete link with confirmation -->
+<a href="${pageContext.request.contextPath}/deleteTableau?idO=${tableau.idO}" 
+   onclick="return confirm('Are you sure you want to delete this item?');">
+   <i class="fas fa-trash-alt"></i> Delete
+</a>
                         </td>
                 </tr>
             </c:forEach>

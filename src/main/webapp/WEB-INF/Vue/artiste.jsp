@@ -265,7 +265,13 @@
                         class="nav_name">Login</span> </a>
             </nav>
         </div>
-      
+      <%-- Add the error message snippet here --%>
+   <% String error = request.getParameter("error"); %>
+<% if ("deleteFailed".equals(error)) { %>
+    <div class="alert alert-danger" role="alert">
+        Cannot delete artiste: An error occurred while trying to delete the associated records.
+    </div>
+<% } %>
         
         <!--Container Main start-->
         <div class="" style="position:relative; top: 10%;">
@@ -296,10 +302,10 @@
                     <td>${artiste.nationalite}</td>
                     <td>${artiste.dateNaissance}</td>
                     <td>
-                        <a href="${pageContext.request.contextPath}/updateExposition?id=${artiste.id}">
+                        <a href="${pageContext.request.contextPath}/updateExposition?idAr=${artiste.id}">
                             <i class="fas fa-edit"></i> Update
                         </a>
-                        <a href="${pageContext.request.contextPath}/deleteExposition?id=${artiste.id}" 
+                <a href="${pageContext.request.contextPath}/deleteArtiste?idAr=${artiste.id}" 
                            onclick="return confirm('Are you sure you want to delete this item?');">
                             <i class="fas fa-trash-alt"></i> Delete
                         </a>

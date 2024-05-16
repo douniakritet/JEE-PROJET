@@ -39,55 +39,60 @@ public class AdminLogin extends HttpServlet {
 		doGet(request, response);
 	}
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-       //this.getServletContext().getRequestDispatcher("/WEB-INF/Vue/Login.jsp").forward(request, response);
-		String action = request.getServletPath();
+	    String action = request.getServletPath();
 
-		try {
-			switch (action) {
-			case "/login":
-				loginUser(request, response);
-				break;
-			case "/logout":
-				logout(request, response);
-				break;
-			case "/dashboard":
-				dashboard(request, response);
-				break;
-			case "/artiste":
-				listArtiste(request, response);
-				break;
-			case "/tableau":
-				listTableau(request, response);
-				break;
-			case "/exposition":
-				listExposition(request, response);
-				break;
-			case "/transaction":
-				listTransaction(request, response);
-					break;
-			case "/ajouterArtiste":
-				ajouterArtiste(request, response);
-					break;
-			case "/ajouterTableau":
-				ajouterTableau(request, response);
-					break;
-			case "/ajouterExposition":
-				ajouterExposition(request, response);
-						break;
-	       case "/ajouterTransaction":
-	    	   ajouterTransaction(request, response);
-				break;
-		default:
-			listUserIndex(request, response);
-			break;
-		}
-	} catch (SQLException ex) {
-		throw new ServletException(ex);
+	    try {
+	        switch (action) {
+	            case "/login":
+	                loginUser(request, response);
+	                break;
+	            case "/logout":
+	                logout(request, response);
+	                break;
+	            case "/dashboard":
+	                dashboard(request, response);
+	                break;
+	            case "/artiste":
+	                listArtiste(request, response);
+	                break;
+	            case "/tableau":
+	                listTableau(request, response);
+	                break;
+	            case "/exposition":
+	                listExposition(request, response);
+	                break;
+	            case "/transaction":
+	                listTransaction(request, response);
+	                break;
+	            case "/ajouterArtiste":
+	                ajouterArtiste(request, response);
+	                break;
+	            case "/ajouterTableau":
+	                ajouterTableau(request, response);
+	                break;
+	            case "/ajouterExposition":
+	                ajouterExposition(request, response);
+	                break;
+	            case "/ajouterTransaction":
+	                ajouterTransaction(request, response);
+	                break;
+	            case "/deleteArtiste":
+                    deleteArtiste(request, response);
+                    break;
+                    
+	            case "/deleteTableau":
+	                deleteTableau(request, response);
+	                break;
+	            // Other cases
+	            default:
+	                listUserIndex(request, response);
+	                break;
+	        }
+	    } catch (SQLException ex) {
+	        throw new ServletException(ex);
+	    }
+	}
 
-	}
-	}
-	
 	private void loginUser(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
 
 		LoginBean loginDao = new LoginBean();
@@ -179,6 +184,32 @@ public class AdminLogin extends HttpServlet {
 		
 		
 	}
+	
+	private void deleteArtiste(HttpServletRequest request, HttpServletResponse response)
+	        throws SQLException, IOException {
+	    int idAr = Integer.parseInt(request.getParameter("idAr"));
+	    String dbDriver = "com.mysql.jdbc.Driver"; // Replace with your actual database driver string
+	    try {
+	        dao.deleteArtiste(idAr, dbDriver); // Pass the database driver string
+	        response.sendRedirect(request.getContextPath() + "/artiste");
+	    } catch (SQLException e) {
+	        // Handle the error case if deletion fails
+	        response.sendRedirect(request.getContextPath() + "/artiste?error=deleteFailed");
+	    }
+	}
+
+	private void deleteTableau(HttpServletRequest request, HttpServletResponse response)
+	        throws SQLException, IOException {
+	    int idO = Integer.parseInt(request.getParameter("idO"));
+	    try {
+	        dao.deleteTableau(idO);
+	        response.sendRedirect(request.getContextPath() + "/tableau");
+	    } catch (SQLException e) {
+	        response.sendRedirect(request.getContextPath() + "/tableau?error=deleteFailed");
+	    }
+	}
+
+
 
 	private void ajouterTableau(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException, ServletException {

@@ -295,6 +295,60 @@ public class Jeebdd {
 
 	}
 
+	public void deleteArtiste(int idAr, String dbDriver) throws SQLException {
+	    deleteAssociatedOeuvres(idAr, dbDriver); // First, delete associated oeuvres
+	    String sql = "DELETE FROM artiste WHERE idAr = ?";
+	    try (Connection connection = getConnection(dbDriver);
+	         PreparedStatement statement = connection.prepareStatement(sql)) {
+	        statement.setInt(1, idAr);
+	        statement.executeUpdate();
+	    }
+	}
+
+	public void deleteAssociatedOeuvres(int idAr, String dbDriver) throws SQLException {
+	    String sql = "DELETE FROM oeuvre WHERE idArtiste = ?";
+	    try (Connection connection = getConnection(dbDriver);
+	         PreparedStatement statement = connection.prepareStatement(sql)) {
+	        statement.setInt(1, idAr);
+	        statement.executeUpdate();
+	    }
+	}
+
+	public void deleteTableau(int idO) throws SQLException {
+	    try {
+	        // First, delete associated transactions
+	        deleteAssociatedTransactions(idO);
+
+	        // Then, delete the tableau
+	        String sql = "DELETE FROM oeuvre WHERE idO = ?";
+	        try (Connection connection = getConnection(dbDriver);
+	             PreparedStatement statement = connection.prepareStatement(sql)) {
+	            statement.setInt(1, idO);
+	            int rowsAffected = statement.executeUpdate();
+	            if (rowsAffected == 0) {
+	                System.out.println("No tableau found with ID: " + idO);
+	            } else {
+	                System.out.println("Tableau with ID " + idO + " deleted successfully");
+	            }
+	        }
+	    } catch (SQLException e) {
+	        System.out.println("Error deleting tableau with ID " + idO + ": " + e.getMessage());
+	        throw e;
+	    }
+	}
+	public void deleteAssociatedTransactions(int idO) throws SQLException {
+	    String sql = "DELETE FROM transaction WHERE idOeuvre = ?";
+	    try (Connection connection = getConnection(dbDriver);
+	         PreparedStatement statement = connection.prepareStatement(sql)) {
+	        statement.setInt(1, idO);
+	        statement.executeUpdate();
+	    }
+	}
+
+
+
+
+
 	
 /*
 	public void insert(departement departement) throws SQLException {
